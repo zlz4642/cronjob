@@ -1,7 +1,7 @@
-#!/bin/bash
+
 
 # 메모리 임계치 (예: 90%)
-MEMORY_THRESHOLD=90
+MEMORY_THRESHOLD=10
 
 # 파드 이름
 POD_NAME=$(kubectl get pod | grep "one" | awk '{print $1}')
@@ -13,3 +13,5 @@ if (( $(echo "$memory_usage > $MEMORY_THRESHOLD" | bc -l) )); then
   echo "파드 $POD_NAME의 메모리 사용량이 임계치를 초과했습니다. 삭제 중..."
   kubectl delete pod $POD_NAME
 fi
+
+sleep 60
